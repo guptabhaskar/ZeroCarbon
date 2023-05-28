@@ -20,7 +20,7 @@ function SavedFilesList() {
       data: { files },
     } = await axios.get("/api/file", {
       params: {
-        user_id: session.user.id,
+        user_id: session.user.email,
       },
     });
     if (files.length === 0) {
@@ -29,7 +29,6 @@ function SavedFilesList() {
     }
     let tableData = [{ doc_id: "Document ID", date: "Date" }];
     files.map(async (file) => {
-      console.log(file);
       const { document_id, createdAt } = file;
       let date = new Date(createdAt);
       let dateString = date.toISOString().split("T")[0];
@@ -63,7 +62,7 @@ function SavedFilesList() {
         });
         document_ids.push(document_id);
         return axios.post("/api/file", {
-          user_id: session.user.id,
+          user_id: session.user.email,
           document_id: document_id,
         });
       });
@@ -118,11 +117,6 @@ function SavedFilesList() {
               </div>
             </Group>
           </Dropzone>
-        </div>
-        <div>
-          <p className="text-2xl mt-10 font-semibold">
-            Your session ID is: {session.user.id}
-          </p>
         </div>
         {table.length !== 0 ? (
           <div className="bg-blue-50 flex flex-col justify-center items-center my-10">
