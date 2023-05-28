@@ -14,7 +14,7 @@ export default function App({
     <SessionProvider session={session}>
       <Layout>
         <Head>
-          <title>SaveEarth</title>
+          <title>ZeroCarbon</title>
           <link rel="icon" href="/logo.png" />
         </Head>
         <Header />

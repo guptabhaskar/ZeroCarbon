@@ -27,7 +27,7 @@ export default function IndexPage() {
                 className="m-5"
               />
             </div>
-            <div className="text-4xl font-semibold">SaveEarth</div>
+            <div className="text-4xl font-semibold">ZeroCarbon</div>
           </div>
         </div>
       </>

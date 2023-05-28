@@ -26,7 +26,7 @@ export default function Header() {
                 className="m-5"
               />
             </div>
-            <div className="text-3xl font-semibold">SaveEarth</div>
+            <div className="text-3xl font-semibold">ZeroCarbon</div>
           </div>
         </Link>
       </div>

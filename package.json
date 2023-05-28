@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "save-earth",
+  "name": "zero-carbon",
   "scripts": {
     "dev": "next",
     "build": "next build",
