@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "safe-keep",
+  "name": "save-earth",
   "scripts": {
     "dev": "next",
     "build": "next build",

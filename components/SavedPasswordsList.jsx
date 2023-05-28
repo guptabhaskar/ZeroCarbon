@@ -77,7 +77,7 @@ function SavedPasswordList({ passwords }) {
                 className="m-5"
               />
             </div>
-            <div className="text-3xl font-semibold">SafeKeep</div>
+            <div className="text-3xl font-semibold">SaveEarth</div>
           </div>
         </div>
       </>
