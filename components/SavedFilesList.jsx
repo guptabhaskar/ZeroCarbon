@@ -82,7 +82,10 @@ function SavedFilesList() {
   return (
     <div className="bg-blue-50 h-screen">
       <div className="flex flex-col items-center text-center text-xl">
-        <div className="font-bold text-xl pt-24">
+        <div className="font-bold text-xl pt-12">
+          Link to plugin: https://8z1nj6-5003.csb.app
+        </div>
+        <div className="font-bold text-xl pt-12">
           <Dropzone
             onDrop={(files) => {
               uploadFiles(files);

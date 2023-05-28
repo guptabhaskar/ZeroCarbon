@@ -29,6 +29,9 @@ export default function IndexPage() {
             </div>
             <div className="text-4xl font-semibold">ZeroCarbon</div>
           </div>
+          <div className="font-bold text-xl pt-24">
+            Link to plugin: https://8z1nj6-5003.csb.app
+          </div>
         </div>
       </>
     );
