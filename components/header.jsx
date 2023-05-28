@@ -2,9 +2,6 @@ import Link from "next/link";
 import { signIn, signOut, useSession } from "next-auth/react";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import AddPassword from "./AddPassword";
-import { CopyButton, Button } from "@mantine/core";
-import { generatePassword } from "../utils/functions";
 
 // The approach used in this component shows how to build a sign in and sign out
 // component that works on pages which support both client and server side
@@ -41,11 +38,10 @@ export default function Header() {
               <>
                 <span className="mr-5 text-lg">You are not signed in</span>
                 <a
-                  href={`/api/auth/signin`}
                   className="bg-transparent text-blue-700 font-semibold py-2 px-4 border border-blue-500 rounded"
                   onClick={(e) => {
                     e.preventDefault();
-                    signIn();
+                    signIn("auth0");
                   }}
                 >
                   Sign in
