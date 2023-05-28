@@ -36,25 +36,6 @@ export default function Header() {
       {/* BOX 2 */}
       <div>
         <div className="flex font-light items-end text-lg space-x-6">
-          {session?.user && router.pathname === "/" && (
-            <>
-              <div className="mx-4 items-center">
-                <CopyButton value={generatePassword(20)}>
-                  {({ copied, copy }) => (
-                    <button
-                      className={`bg-transparent font-semibold py-2 px-4 border rounded text-blue-700 border-blue-700`}
-                      onClick={copy}
-                    >
-                      {copied ? "Password Copied" : "Generate Password"}
-                    </button>
-                  )}
-                </CopyButton>
-              </div>
-              <div className="mx-4 items-center">
-                <AddPassword />
-              </div>
-            </>
-          )}
           <div className="mr-2 items-center">
             {!session && (
               <>
