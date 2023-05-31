@@ -1,0 +1,17 @@
+{
+  "schema_version": "v1",
+  "name_for_human": "ZeroCarbon",
+  "name_for_model": "ZeroCarbon",
+  "description_for_human": "Plugin to calculate your carbon emission and offset it.",
+  "description_for_model": "Plugin which takes the bank statement of a person, calculates approximation of their carbon emission using it.",
+  "auth": {
+    "type": "none"
+  },
+  "api": {
+    "type": "openapi",
+    "url": "https://8z1nj6-5003.csb.app/openapi.yaml"
+  },
+  "logo_url": "https://8z1nj6-5003.csb.app/logo.jpeg",
+  "contact_email": "legal@example.com",
+  "legal_info_url": "http://example.com/legal"
+}

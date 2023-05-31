@@ -1,0 +1,202 @@
+openapi: 3.0.1
+info:
+  title: Zero Carbon
+  description: A plugin that allows the user to calculate their approximate carbon emissions from their bank statement and offset it by financing a climate project. If you do not know the user's username, ask them first before making queries to the plugin.
+  version: "v1"
+servers:
+  - url: https://8z1nj6-5003.csb.app
+paths:
+  /carbon_offset_clear:
+    post:
+      operationId: carbonOffsetClear
+      summary: To clear the carbon offset using the method choosen carbon offsetting methods and update the position on the leaderboard
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/carbonOffsetClearRequest"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getCarbonOffsettingMethodsResponse"
+
+  /carbon_offsetting_methods:
+    get:
+      operationId: getCarbonOffsettingMethods
+      summary: To get the list of carbon offsetting methods with details to calculate how much carbon offsetting will cost
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getCarbonOffsettingMethodsResponse"
+  /leaderboard:
+    get:
+      operationId: getLeaderboard
+      summary: Get the leaderboard of users in ascending order of carbon emissions to show it in a table format
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getLeaderboardResponse"
+    post:
+      operationId: addToLeaderboard
+      summary: Add a user to the leaderboard
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/addToLeaderboardRequest"
+
+  /carbon_footprint_factors:
+    get:
+      operationId: getCarbonFootprintFactors
+      summary: Get the carbon footprint factors
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getCarbonFootprintFactorsResponse"
+
+  /values:
+    get:
+      operationId: getValues
+      summary: Get the list of values for calculating carbon emissions
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getValuesResponse"
+
+  /get_documents/{user_id}:
+    get:
+      operationId: getDocumentIds
+      summary: Get the list of document ids
+      parameters:
+        - in: path
+          name: user_id
+          schema:
+            type: string
+          required: true
+          description: The user_id of the user.
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getDocumentIdsResponse"
+
+  /get_csv/{doc_id}:
+    get:
+      operationId: getCsv
+      summary: Get the csv of the bank statement
+      parameters:
+        - in: path
+          name: doc_id
+          schema:
+            type: string
+          required: true
+          description: The name of the csv file to fetch.
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getCsvResponse"
+
+components:
+  schemas:
+    carbonOffsetClearRequest:
+      type: object
+      required:
+        - user_id
+      properties:
+        user_id:
+          type: string
+          description: The user_id of the user.
+          required: true
+    getCarbonOffsettingMethodsResponse:
+      type: object
+      properties:
+        factors:
+          type: array
+          items:
+            type: string
+          description: The list of carbon offsetting methods with details to calculate how much carbon offsetting will cost.
+
+    addToLeaderboardRequest:
+      type: object
+      required:
+        - user_id
+        - carbon_emissions
+      properties:
+        user_id:
+          type: string
+          description: The user_id of the user.
+          required: true
+        carbon_emissions:
+          type: number
+          description: The carbon emissions of the user.
+          required: true
+    getLeaderboardResponse:
+      type: array
+      items:
+        type: object
+        properties:
+          user_id:
+            type: string
+            description: The user_id of the user.
+          carbon_emissions:
+            type: number
+            description: The carbon emissions of users which will be shown in a table format.
+    getCarbonFootprintFactorsResponse:
+      type: object
+      properties:
+        factors:
+          type: array
+          items:
+            type: string
+          description: The list of factors to check for carbon emission.
+    getValuesResponse:
+      type: object
+      properties:
+        fuel_efficiency:
+          type: integer
+          description: The fuel efficiency of the car in miles/gallon.
+        gas_price:
+          type: integer
+          description: The average gas price over the year in dollars/gallon.
+        gasoline_co2_emission:
+          type: integer
+          description: The amount of CO2 emitted per gallon of gasoline in pounds/gallon.
+        co2_emission_food:
+          type: number
+          description: The amount of CO2 emitted in kgs for every dollar spent
+    getDocumentIdsResponse:
+      type: object
+      properties:
+        document_ids:
+          type: array
+          items:
+            type: string
+          description: The list of document ids.
+    getCsvResponse:
+      type: object
+      properties:
+        file:
+          type: csv
+          description: The csv data of the bank statement.
